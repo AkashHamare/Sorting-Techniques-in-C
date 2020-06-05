@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+void bubblesort(int x[],int n)
+{
+	int i,j,t;
+	for(i=0;i<n;i++)
+        for(j=i+1;j<n;j++)
+        {
+            if(x[i]>x[j])
+            {
+                t=x[i];
+                x[i]=x[j];
+                x[j]=t;
+            }
+        }
+}
