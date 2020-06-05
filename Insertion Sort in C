@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <conio.h>
+
+void insertionsort(int x[],int n)
+{
+	int i,j,val;
+	for(i=0;i<n-1;i++)
+	{
+		val=x[i+1];
+		for(j=i;j>=0;j--)
+			if(x[j]>val)
+				x[j+1]=x[j];
+			else
+				break;
+			x[j+1]=val;
+	}
+}
+void accept(int x[],int n)
+{
+	int i;
+
+	for(int i=0;i<n;i++)
+	{
+
+		scanf("%d",&x[i]);
+	}
+}
+void display(int x[],int n)
+{
+   int i;
+   for(i=0;i<n;i++)
+   {
+   	printf("%d ",x[i]);
+   }
+
+}
+void main()
+{
+	int n,x[100],ch;
+	while(1)
+	{
+		printf("\n1)Enter Array. \n2)Display Array. \n3)Sort the Array. \n4)Exit. \nEnter choice : ");
+        scanf("%d",&ch);
+        if(ch==4)
+        	break;
+        switch(ch)
+        {
+        	case 1 : printf("Enter the no. of element : ");
+                     scanf("%d",&n);
+                     printf("Enter the elements : ");
+                     accept(x,n);
+                     break;
+
+            case 2 : display(x,n);
+                     break;
+
+            case 3 : insertionsort(x,n);
+                     display(x,n);
+                     break;
+
+            default : printf("Not a valid option!\n");
+        }
+	}
+}
