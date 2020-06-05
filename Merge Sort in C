@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <string.h>
+void merge(int x[],int lb,int m,int ub)
+{
+	int temp[50],i=lb,j=m+1,k=0;
+	while(i<=m && j<=ub)
+	{
+		if(x[i]<x[j])
+			temp[k++]=x[i++];
+		else
+			temp[k++]=x[j++];
+	}
+	while(i<=m)
+		temp[k++]=x[i++];
+	while(j<=ub)
+		temp[k++]=x[j++];
+	k=0;
+	for(i=lb;i<=ub;i++)
+		x[i]=temp[k++];
+}
+void mergesort(int x[],int lb,int ub)
+{
+	int m;
+	if(lb<ub)
+	{
+		m=(lb+ub)/2;
+		mergesort(x,lb,m);
+		mergesort(x,m+1,ub);
+		merge(x,lb,m,ub);
+	}
+}
+void accept(int x[],int n)
+{
+	int i;
+	for(int i=0;i<n;i++)
+	{
+		scanf("%d",&x[i]);
+	}
+}
+void display(int x[],int n)
+{
+   int i;
+   for(i=0;i<n;i++)
+   {
+   	printf("%d ",x[i]);
+   }
+
+}
+void main()
+{
+	int n,x[100],ch;
+	while(1)
+	{
+		printf("\n1)Enter Array. \n2)Display Array. \n3)Sort the Array. \n4)Exit. \nEnter choice : ");
+        scanf("%d",&ch);
+        if(ch==4)
+        	break;
+        switch(ch)
+        {
+        	case 1 : printf("Enter no of element : ");
+                     scanf("%d",&n);
+                     printf("Enter elements : ");
+                     accept(x,n);
+                     break;
+
+            case 2 : display(x,n);
+                     break;
+
+            case 3 : mergesort(x,0,n-1);
+                     display(x,n);
+                     break;
+
+            default : printf("Not a valid option!\n");
+        }
+	}
+}
