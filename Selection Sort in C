@@ -23,35 +23,3 @@ for(i=0;i<n-1;i++)
 }
 }
 
-void main()
-{
-	FILE *fp,*p;
-	int *x,i,n,a;
-	clock_t start,end;
-	double time;
-	printf("Enter the number of elements : ");
-	scanf("%d",&n);
-	x=(int*)malloc(n*sizeof(int));
-	fp=fopen("Input.txt","w");
-	for(i=0;i<n;i++)
-	{
-		x[i]=rand()%1000;
-		//printf("%d ",x[i]);
-		fprintf(fp,"%d ",x[i]);
-
-	}
-	start=clock();
-	selectionsort(x,n);
-	start=clock();
-	p=fopen("Output.txt","w");
-	for(i=0;i<n;i++)
-	{
-		fprintf(p,"%d ",x[i]);
-	}
-
-	time=((double)(end-start))/CLOCKS_PER_SEC;
-	printf("time required is %f.",time);
-	fclose(fp);
-	fclose(p);
-}
-
