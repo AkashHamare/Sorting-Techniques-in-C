@@ -1,0 +1,64 @@
+#include<stdio.h>
+void heapify(int a[], int n)
+{
+    int i, c, r, t;
+    for(i=1; i<n; i++)
+    {
+        c=i;
+        do
+        {
+            r=(c-1)/2;
+            if(a[r]<a[c])
+            {
+                t=a[r];
+                a[r]=a[c];
+                a[c]=t;
+            }
+            c=r;
+        }while(c!=0);
+    }
+}
+void heapsort(int a[], int n)
+{
+    int i, t, r=0, c;
+    for(i=n-1; i>=0; i--)
+    {
+        t=a[0];
+        a[0]=a[i];
+        a[i]=t;
+        r=0;
+        do
+        {
+            c=2*r+1;
+            if((a[c]<a[c+1])&&c<i-1)
+            {
+                c++;
+            }
+            if((a[r]<a[c])&&c<i)
+            {
+                t=a[r];
+                a[r]=a[c];
+                a[c]=t;
+            }
+            r=c;
+        }while(c<i);
+    }
+}
+void main()
+{
+    int a[50], n, i;
+    printf("Enter number of elements of array:\n");
+    scanf("%d", &n);
+    printf("Enter Elements:\n");
+    for(i=0; i<n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+    heapify(a, n);
+    heapsort(a, n);
+    printf("SORTED ELEMNTS ARE :");
+    for(i=0; i<n; i++)
+    {
+        printf(" %d", a[i]);
+    }
+}
